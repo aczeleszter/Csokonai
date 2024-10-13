@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Csokonai Vitéz Mihály Kvíz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        .correct {
+            color: green;
+        }
+        .incorrect {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Csokonai Vitéz Mihály Kvíz</h1>
+
+    <div class="question">
+        <label>Hol jelent meg először Csokonai Vitéz Mihály verse?</label><br>
+        <input type="radio" name="q1" value="Magyar Hírmondó"> Magyar Hírmondó<br>
+        <input type="radio" name="q1" value="Szegedi Napilap"> Szegedi Napilap<br>
+        <input type="radio" name="q1" value="Athenaeum"> Athenaeum<br>
+        <input type="radio" name="q1" value="Pesti Est"> Pesti Est<br>
+    </div>
+
+    <button id="checkBtn">Ellenőrzés</button>
+
+    <div id="result" class="result"></div>
+
+    <script>
+        document.getElementById("checkBtn").addEventListener("click", function() {
+            const correctAnswer = "Magyar Hírmondó";
+            const radios = document.getElementsByName('q1');
+            let selectedAnswer;
+            for (const radio of radios) {
+                if (radio.checked) {
+                    selectedAnswer = radio.value;
+                    break;
+                }
+            }
+
+            const resultDiv = document.getElementById('result');
+            if (selectedAnswer === undefined) {
+                resultDiv.innerHTML = "Kérlek, válassz egy választ!";
+                resultDiv.className = "result incorrect";
+                return;
+            }
+
+            if (selectedAnswer === correctAnswer) {
+                resultDiv.innerHTML = "Helyes válasz!";
+                resultDiv.className = "result correct";
+            } else {
+                resultDiv.innerHTML = `Helytelen válasz! A helyes válasz: ${correctAnswer}`;
+                resultDiv.className = "result incorrect";
+            }
+        });
+    </script>
+
+</body>
+</html>
